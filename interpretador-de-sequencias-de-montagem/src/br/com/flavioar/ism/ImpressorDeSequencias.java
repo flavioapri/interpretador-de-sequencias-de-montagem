@@ -12,7 +12,7 @@ public class ImpressorDeSequencias {
 	}
 
 	public static String imprimirSequenciaComNomesDosCampos(Sequencia sequencia) {
-		return "=================================================\r\n" + " Sequência: " + sequencia.getNumero()
+		return "=====================================\r\n" + " Sequência: " + sequencia.getNumero()
 				+ "\r\n\r\n Chicote: " + sequencia.getChicote() + "\r\n Tipo de Veículo: " + sequencia.getTipoDeVeiculo()
 				+ "\r\n Tipo de Cabina: " + sequencia.getTipoDeCabina() + "\r\n País: " + sequencia.getPais()
 				+ "\r\n Material: " + sequencia.getMaterial() + "\r\n Lateral: " + sequencia.getRevestimentoLateral()
@@ -21,7 +21,7 @@ public class ImpressorDeSequencias {
 	}
 
 	public static String imprimirAnotacaoDasSequencias(Sequencia sequencia) {		
-			return "==================================================" +
+			return "======================================" +
 			"\r\n Sequência: " + sequencia.getNumero() +
 			"\r\n \r\n " +	sequencia.getChicote() +
 			"\r\n \r\n " + sequencia.getTipoDeVeiculo() +

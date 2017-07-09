@@ -2,16 +2,16 @@ package br.com.flavioar.ism.entidade;
 
 public enum Codes {
 	
-	DD5(false, "ALTO"),
-	FP6(true, "TECIDO"),
-	FF8(false, "CORTINA"),
-	EV2(true, "RADIO PX"),
+	FP6(true, "TECIDO"),	
 	EX3(true, "ARMAÇÃO FLEETBOARD"),
+	S28(false, "CENTRAL"),
+	FF8(false, "CORTINA"),
+	F04(false, "LEITO"),	
+	DD5(false, "ALTO"),	
+	EV2(true, "RADIO PX"),	
 	YM1(true, "APARELHO FLEETBOARD"),
 	F20(false, "ESTENDIDA"),
-	F35(false, "JANELA"),
-	F04(false, "LEITO"),
-	S28(false, "CENTRAL"),
+	F35(false, "JANELA"),	
 	DS7(true, "PORTINHOLA"),
 	SM7(true, "BAGAGEIRO"),
 	SM2(true, "BELICHE"),

@@ -8,6 +8,7 @@ import br.com.flavioar.ism.entidade.Codes;
 import br.com.flavioar.ism.entidade.RevestimentoTraseiro;
 import br.com.flavioar.ism.entidade.Sequencia;
 import br.com.flavioar.ism.entidade.TipoCarro;
+import br.com.flavioar.ism.entidade.TipoDeCabina;
 
 public class ComparadorDeInformacoes {
 
@@ -28,10 +29,9 @@ public class ComparadorDeInformacoes {
 			pais = "ARGENTINA";
 		else
 			pais = "OUTRO";
-
 		return pais;
 	}
-	
+
 	public static void verificarCabinaCompacta(Sequencia sequencia) {
 		if (!sequencia.getVariante().contains("QVV")) {
 			sequencia.setTipoDeCabina("COMPACTA");
@@ -39,25 +39,33 @@ public class ComparadorDeInformacoes {
 			sequencia.setMaterial("");
 			sequencia.setPais("");
 			sequencia.setCodes("");
-			sequencia.setRevestimentoLateral("");			
+			sequencia.setRevestimentoLateral("");
 			sequencia.setRevestimentoTraseiro("");
 		}
 	}
 
 	public static void compararTipoDeCabina(Sequencia sequencia) {
-		if (sequencia.getCodes().contains(Codes.FF8.name()))
-			if (sequencia.getCodes().contains(Codes.F04.name()))
-				if (sequencia.getCodes().contains(Codes.DD5.name()))
-					sequencia.setTipoDeCabina(Codes.DD5.getNomeUsual());
-				else
-					sequencia.setTipoDeCabina(Codes.F04.getNomeUsual());
-			else
-				sequencia.setTipoDeCabina(Codes.FF8.getNomeUsual());
-		else if (sequencia.getCodes().contains(Codes.S28.name()))
-			sequencia.setTipoDeCabina(Codes.S28.getNomeUsual());
-		else if (sequencia.getTipoDeVeiculo() != TipoCarro.ACCELO.getNome()
-				&& sequencia.getTipoDeVeiculo() != TipoCarro.SKL.getNome())
-			sequencia.setTipoDeCabina("NORMAL");
+		organizarCodes(sequencia);
+		System.out.println(sequencia.getCodes());
+		for (TipoDeCabina tipo : TipoDeCabina.values()) {
+			if (sequencia.getCodes().contains(tipo.getCodes()))
+				sequencia.setTipoDeCabina(tipo.name());			
+		}
+		if (sequencia.getTipoDeVeiculo() == TipoCarro.ACCELO.getNome()
+				|| sequencia.getTipoDeVeiculo() == TipoCarro.SKL.getNome())
+			sequencia.setTipoDeCabina("");
+	}
+
+	private static void organizarCodes(Sequencia sequencia) {
+		StringBuilder codesOrganizados = new StringBuilder();
+
+		for (Codes code : Codes.values()) {
+			if (sequencia.getCodes().contains(code.name())) {
+				codesOrganizados.append(code.name());
+				codesOrganizados.append(" ");
+			}
+		}
+		sequencia.setCodes(codesOrganizados.toString());
 	}
 
 	public static void compararMaterial(Sequencia sequencia) {
@@ -82,8 +90,8 @@ public class ComparadorDeInformacoes {
 
 	public static void compararRevestimentoTraseiro(Sequencia sequencia) {
 		if (sequencia.getCodes().contains("F04"))
-			return;		
-		
+			return;
+
 		List<String> dadosDaSequencia = Arrays.asList(sequencia.stringDados().split(" "));
 
 		for (RevestimentoTraseiro revestimento : RevestimentoTraseiro.values()) {
@@ -98,7 +106,7 @@ public class ComparadorDeInformacoes {
 				sequencia.setRevestimentoTraseiro(revestimento.getNumero());
 		}
 	}
-	
+
 	public static void compararCodesRelevantes(Sequencia sequencia) {
 		StringBuilder codesRelevantes = new StringBuilder("");
 		for (Codes code : Codes.values()) {

@@ -14,9 +14,10 @@ public class Principal {
 	static char opcaoDeExibicao;
 
 	public static void main(String[] args) {
-		System.out.println("==================================================");
+		System.out.println("========================================================");
 		System.out.println("Interpretador de Sequências de Montagem - ver 1.0");
-		System.out.println("==================================================\n");
+		System.out.println("Desenvolvido por Flávio Aparecido Ribeiro RE 280.655/0");
+		System.out.println("========================================================\n");
 
 		List<String> listaDeSequencias = GeradorDeLista.gerarLista();
 		List<Sequencia> sequenciasConstruidas = ConstrutorDeSequencias.construirSequencias(listaDeSequencias);
@@ -40,7 +41,6 @@ public class Principal {
 			if (opcao == 's') {
 				setMetodoDeExibicao();
 				GeradorDeLista.gravarListaEmArquivo(sequenciasConstruidas, metodoDeExibicao);
-
 			} else if (opcao != 's' && opcao != 'n')
 				System.out.println("Você informou uma opcao inválida. Digite 's' para Sim ou 'n' para Não.");
 		} while (opcao != 's' && opcao != 'n');
@@ -59,8 +59,7 @@ public class Principal {
 	}
 
 	private static void exibirSequencias(List<Sequencia> sequenciasProcessadas) {
-		if (!metodoDeExibicao.isEmpty()) {
-			System.out.println(metodoDeExibicao);
+		if (!metodoDeExibicao.isEmpty()) {			
 			Class<ImpressorDeSequencias> impressor = ImpressorDeSequencias.class;
 
 			try {

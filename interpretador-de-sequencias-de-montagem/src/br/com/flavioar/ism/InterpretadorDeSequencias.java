@@ -18,8 +18,6 @@ public class InterpretadorDeSequencias {
 			ComparadorDeInformacoes.compararChicote(sequencia);
 			ComparadorDeInformacoes.verificarCabinaCompacta(sequencia);			
 		}
-
 		return sequenciasConstruidas;
 	}
-
 }
