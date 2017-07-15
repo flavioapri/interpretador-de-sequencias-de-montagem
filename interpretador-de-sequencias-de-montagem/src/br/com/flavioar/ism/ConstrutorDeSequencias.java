@@ -17,7 +17,7 @@ public class ConstrutorDeSequencias {
 			int indiceInicial = 0;
 			int indiceFinal = 0;
 			sequenciasConstruidas.get(j).setNumero(linha.substring(0, 6));
-			sequenciasConstruidas.get(j).setTipoDeVeiculo(ComparadorDeInformacoes.compararTipoDeCarro(linha));
+			sequenciasConstruidas.get(j).setTipoDeVeiculo(ComparadorDeInformacoes.compararTipoDeVeiculo(linha));
 			sequenciasConstruidas.get(j).setPais(ComparadorDeInformacoes.compararPais(linha));
 
 			if (linha.contains("QVV")) {

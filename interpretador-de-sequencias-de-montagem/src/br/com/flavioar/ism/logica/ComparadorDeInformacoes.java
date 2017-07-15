@@ -1,22 +1,21 @@
 package br.com.flavioar.ism.logica;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.flavioar.ism.entidade.Chicotes;
 import br.com.flavioar.ism.entidade.Codes;
 import br.com.flavioar.ism.entidade.RevestimentoTraseiro;
 import br.com.flavioar.ism.entidade.Sequencia;
-import br.com.flavioar.ism.entidade.TipoCarro;
-import br.com.flavioar.ism.entidade.TipoDeCabina;
+import br.com.flavioar.ism.entidade.TipoDeVeiculo;
 
 public class ComparadorDeInformacoes {
 
-	public static String compararTipoDeCarro(String linha) {
+	public static String compararTipoDeVeiculo(String linha) {
 		String tipo = "Não informado";
-		for (TipoCarro tipoCarro : TipoCarro.values()) {
-			if (linha.contains(tipoCarro.getBaumuster()))
-				tipo = tipoCarro.getNome();
+		for (TipoDeVeiculo tipoDeVeiculo : TipoDeVeiculo.values()) {
+			if (linha.contains(tipoDeVeiculo.getBaumuster()))
+				tipo = tipoDeVeiculo.getNome();
 		}
 		return tipo;
 	}
@@ -44,16 +43,34 @@ public class ComparadorDeInformacoes {
 		}
 	}
 
-	public static void compararTipoDeCabina(Sequencia sequencia) {
+	public static void reflection(Sequencia sequencia, String classe, String metodo) {
+		String enumerador = "br.com.flavioar.ism.entidade." + classe;
 		organizarCodes(sequencia);
-		System.out.println(sequencia.getCodes());
-		for (TipoDeCabina tipo : TipoDeCabina.values()) {
-			if (sequencia.getCodes().contains(tipo.getCodes()))
-				sequencia.setTipoDeCabina(tipo.name());			
+		try {
+			Method m1 = sequencia.getClass().getMethod(metodo, String.class);
+			Class<?> c = Class.forName(enumerador);
+			Object[] o = c.getEnumConstants();
+			Class<?> s = o[0].getClass();
+			Method m = s.getDeclaredMethod("getCodes");
+			Method m2 = s.getDeclaredMethod("getNome");
+			for (Object oo : c.getEnumConstants()) {
+				if (sequencia.getStringDados().contains((CharSequence) m.invoke(oo))) {
+					m1.invoke(sequencia, m2.invoke(oo));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		if (sequencia.getTipoDeVeiculo() == TipoCarro.ACCELO.getNome()
-				|| sequencia.getTipoDeVeiculo() == TipoCarro.SKL.getNome())
+
+		if (verificarAcceloSkl(sequencia))
 			sequencia.setTipoDeCabina("");
+	}
+
+	private static boolean verificarAcceloSkl(Sequencia sequencia) {
+		if (sequencia.getTipoDeVeiculo() == TipoDeVeiculo.ACCELO.getNome()
+				|| sequencia.getTipoDeVeiculo() == TipoDeVeiculo.SKL.getNome())
+			return true;
+		return false;
 	}
 
 	private static void organizarCodes(Sequencia sequencia) {
@@ -71,8 +88,7 @@ public class ComparadorDeInformacoes {
 	public static void compararMaterial(Sequencia sequencia) {
 		if (sequencia.getCodes().contains(Codes.FP6.name()))
 			sequencia.setMaterial(Codes.FP6.getNomeUsual());
-		else if (sequencia.getTipoDeVeiculo() != TipoCarro.ACCELO.getNome()
-				&& sequencia.getTipoDeVeiculo() != TipoCarro.SKL.getNome())
+		else if (!verificarAcceloSkl(sequencia))
 			if (!sequencia.getCodes().contains(Codes.FP6.name()))
 				sequencia.setMaterial("VINIL");
 	}
@@ -92,7 +108,7 @@ public class ComparadorDeInformacoes {
 		if (sequencia.getCodes().contains("F04"))
 			return;
 
-		List<String> dadosDaSequencia = Arrays.asList(sequencia.stringDados().split(" "));
+		List<String> dadosDaSequencia = Arrays.asList(sequencia.getStringDados().split(" "));
 
 		for (RevestimentoTraseiro revestimento : RevestimentoTraseiro.values()) {
 			int contador = 0;
@@ -116,18 +132,4 @@ public class ComparadorDeInformacoes {
 		sequencia.setCodesRelevantes(codesRelevantes.toString());
 	}
 
-	public static void compararChicote(Sequencia sequencia) {
-		List<String> dadosDaSequencia = Arrays.asList(sequencia.stringDados().split(" "));
-		for (Chicotes chicote : Chicotes.values()) {
-			int contador = 0;
-			String codesChicote = chicote.getCodes();
-			List<String> informacoesChicote = Arrays.asList(codesChicote.split(","));
-			for (String informacao : informacoesChicote) {
-				if (dadosDaSequencia.contains(informacao))
-					contador++;
-			}
-			if (contador == chicote.getQtdCodesRelevantes())
-				sequencia.setChicote(chicote.getNumero());
-		}
-	}
 }

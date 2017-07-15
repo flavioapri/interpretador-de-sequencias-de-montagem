@@ -55,8 +55,7 @@ public class GeradorDeLista {
 	}
 
 	public static void gravarListaEmArquivo(List<Sequencia> sequenciasProcessadas, String metodoDeExibicao) {
-		System.out.println("\nInforme o nome do arquivo a ser gravado:");
-		String nomeDoArquivo = s.nextLine();
+		String nomeDoArquivo = "PM17 REVESTIMENTO";
 
 		try {
 			FileWriter arquivo = new FileWriter(diretorioDoUsuario + File.separator + nomeDoArquivo + ".txt");
@@ -83,7 +82,7 @@ public class GeradorDeLista {
 		new File(diretorioDoUsuario + File.separator + nomeDoDiretorio).mkdir();
 
 		for (Sequencia sequencia : sequenciasProcessadas) {
-			nomeDoArquivo = "PM17 - Sequência -  " + sequencia.getNumero();
+			nomeDoArquivo = "PM17 - Seq " + sequencia.getNumero();
 
 			try {
 				FileWriter arquivo = new FileWriter(diretorioDoUsuario + File.separator + nomeDoDiretorio

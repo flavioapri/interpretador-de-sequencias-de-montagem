@@ -9,13 +9,13 @@ public class InterpretadorDeSequencias {
 
 	public static List<Sequencia> interpretarSequencias(List<Sequencia> sequenciasConstruidas) {
 		
-		for (Sequencia sequencia : sequenciasConstruidas) {			
-			ComparadorDeInformacoes.compararTipoDeCabina(sequencia);
+		for (Sequencia sequencia : sequenciasConstruidas) {
 			ComparadorDeInformacoes.compararMaterial(sequencia);
 			ComparadorDeInformacoes.compararRevestimentoLateral(sequencia);
 			ComparadorDeInformacoes.compararRevestimentoTraseiro(sequencia);
-			ComparadorDeInformacoes.compararCodesRelevantes(sequencia);
-			ComparadorDeInformacoes.compararChicote(sequencia);
+			ComparadorDeInformacoes.compararCodesRelevantes(sequencia);			
+			ComparadorDeInformacoes.reflection(sequencia, "TipoDeCabina", "setTipoDeCabina");
+			ComparadorDeInformacoes.reflection(sequencia, "Chicotes", "setChicote");
 			ComparadorDeInformacoes.verificarCabinaCompacta(sequencia);			
 		}
 		return sequenciasConstruidas;

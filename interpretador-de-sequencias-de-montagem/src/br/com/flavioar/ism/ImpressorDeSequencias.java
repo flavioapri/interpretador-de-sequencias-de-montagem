@@ -12,24 +12,30 @@ public class ImpressorDeSequencias {
 	}
 
 	public static String imprimirSequenciaComNomesDosCampos(Sequencia sequencia) {
-		return "=====================================\r\n" + " Sequência: " + sequencia.getNumero()
-				+ "\r\n\r\n Chicote: " + sequencia.getChicote() + "\r\n Tipo de Veículo: " + sequencia.getTipoDeVeiculo()
-				+ "\r\n Tipo de Cabina: " + sequencia.getTipoDeCabina() + "\r\n País: " + sequencia.getPais()
-				+ "\r\n Material: " + sequencia.getMaterial() + "\r\n Lateral: " + sequencia.getRevestimentoLateral()
-				+ "\r\n Traseira: " + sequencia.getRevestimentoTraseiro() + "\r\n CODES: " + sequencia.getCodesRelevantes()
-				+ "\r\n";
+		return "======================="
+				+ "\r\n Sequência: " + sequencia.getNumero()
+				+ "\r\n Chicote: " + sequencia.getChicote()
+				+ "\r\n Tipo de Veículo: " + sequencia.getTipoDeVeiculo()
+				+ "\r\n Tipo de Cabina: " + sequencia.getTipoDeCabina()
+				+ "\r\n País: " + sequencia.getPais()
+				+ "\r\n Material: " + sequencia.getMaterial()
+				+ "\r\n Lateral: " + sequencia.getRevestimentoLateral()
+				+ "\r\n Traseira: " + sequencia.getRevestimentoTraseiro()
+				+ "\r\n " + sequencia.getCodesRelevantes()
+				+ "\r\n ";
 	}
 
 	public static String imprimirAnotacaoDasSequencias(Sequencia sequencia) {		
-			return "======================================" +
-			"\r\n Sequência: " + sequencia.getNumero() +
-			"\r\n \r\n " +	sequencia.getChicote() +
-			"\r\n \r\n " + sequencia.getTipoDeVeiculo() +
-			"\r\n " + sequencia.getTipoDeCabina() +			
-			"\r\n " +	sequencia.getMaterial() +
-			"\r\n " + sequencia.getPais() + 			
-			"\r\n " +	sequencia.getCodesRelevantes() +
-			"\r\n " +	sequencia.getRevestimentoLateral() +
-			"\r\n " +	sequencia.getRevestimentoTraseiro() + "\r\n ";		
+			return "======================" +
+			"\r\n Sequência: " + sequencia.getNumero() +		
+			"\r\n\t" + sequencia.getChicote() +
+			"\r\n\t" + sequencia.getTipoDeVeiculo() +
+			"\r\n\t" + sequencia.getTipoDeCabina() +			
+			"\r\n\t" + sequencia.getMaterial() +
+			"\r\n\t" + sequencia.getPais() + 			
+			"\r\n " + sequencia.getCodesRelevantes() +
+			"\r\n\t" + sequencia.getRevestimentoLateral() +
+			"\r\n\t" + sequencia.getRevestimentoTraseiro() + 
+			"\r\n\t";		
 	}
 }

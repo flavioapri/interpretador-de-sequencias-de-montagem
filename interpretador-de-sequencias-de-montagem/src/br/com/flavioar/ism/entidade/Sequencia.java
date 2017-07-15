@@ -128,8 +128,9 @@ public class Sequencia {
 				+ "| Chicote: " + chicote + "| País: " + pais;
 	}
 
-	public String stringDados() {
-		return this.tipoDeVeiculo + " " + this.tipoDeCabina + " " + this.material + " " + this.codes;
+	public String getStringDados() {
+		if (codes.contains("EP2"))
+			codes = codes.replace("EP2", "EP3");
+		return this.tipoDeCabina + " " + this.tipoDeVeiculo  + " " + this.material + " " + this.codes;
 	}
-
 }
