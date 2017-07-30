@@ -27,7 +27,7 @@ public class ComparadorDeInformacoes {
 		else if (linha.contains("771"))
 			pais = "ARGENTINA";
 		else
-			pais = "OUTRO";
+			pais = "";
 		return pais;
 	}
 
@@ -130,6 +130,21 @@ public class ComparadorDeInformacoes {
 				codesRelevantes.append(code.name() + " ");
 		}
 		sequencia.setCodesRelevantes(codesRelevantes.toString());
+	}
+
+	public static void verificarTraseiraAccelo(Sequencia sequencia) {		
+		if (sequencia.getTipoDeVeiculo().contains("ACCELO")) {
+			if (sequencia.getStringDados().contains("FF4") && sequencia.getStringDados().contains("F35")) {
+				sequencia.setRevestimentoTraseiro("0056");
+			} else if (sequencia.getStringDados().contains("F35")) {
+				sequencia.setRevestimentoTraseiro("0156");
+			} else if (sequencia.getStringDados().contains("FF4")) {
+				sequencia.setRevestimentoTraseiro("0556");
+			} else {
+				sequencia.setRevestimentoTraseiro("0456");
+			}			
+		}
+		
 	}
 
 }

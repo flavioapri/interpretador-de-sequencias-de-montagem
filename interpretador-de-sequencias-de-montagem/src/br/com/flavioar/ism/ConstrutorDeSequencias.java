@@ -32,6 +32,12 @@ public class ConstrutorDeSequencias {
 				String codes = linha.substring(indiceInicial).replace("IN", "");
 				sequenciasConstruidas.get(j).setCodes(codes);
 			}
+			
+			if (linha.contains("IX")) {
+				indiceInicial = linha.indexOf("IX");
+				String codes = linha.substring(indiceInicial).replace("IX", "");
+				sequenciasConstruidas.get(j).setCodes(codes);
+			}
 		}
 		return sequenciasConstruidas;
 	}

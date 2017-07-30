@@ -16,7 +16,8 @@ public class InterpretadorDeSequencias {
 			ComparadorDeInformacoes.compararCodesRelevantes(sequencia);			
 			ComparadorDeInformacoes.reflection(sequencia, "TipoDeCabina", "setTipoDeCabina");
 			ComparadorDeInformacoes.reflection(sequencia, "Chicotes", "setChicote");
-			ComparadorDeInformacoes.verificarCabinaCompacta(sequencia);			
+			ComparadorDeInformacoes.verificarCabinaCompacta(sequencia);
+			ComparadorDeInformacoes.verificarTraseiraAccelo(sequencia);
 		}
 		return sequenciasConstruidas;
 	}

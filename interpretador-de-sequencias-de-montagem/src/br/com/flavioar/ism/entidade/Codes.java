@@ -20,7 +20,8 @@ public enum Codes {
 	J14(true, "TACÓGRAFO DIÁRIO"),
 	JU0(true, "TACÓGRAFO DIGITAL"),
 	EV2(true, "RADIO PX"),	
-	HK1(true, "CLIMATIZADOR");
+	HK1(true, "CLIMATIZADOR"),
+	FF4(false, "REDE NA PAREDE TRASEIRA");
 	
 	private String nomeUsual;
 	private boolean relevante;
